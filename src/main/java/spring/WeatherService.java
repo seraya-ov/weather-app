@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,14 +40,14 @@ public class WeatherService {
     }
 
 
-    public ArrayList<Weather> getWeatherHistory(String city, int days) throws IOException {
+    public List<Weather> getWeatherHistory(String city, int days) throws IOException {
         LocalDateTime today = LocalDateTime.now();
 
         if (today.getHour() < 13) {
             today = today.minusDays(1);
         }
 
-        ArrayList<Weather> weatherHistory = new ArrayList<>();
+        List<Weather> weatherHistory = new ArrayList<>();
         for (int d = 0; d < Math.min(days, 8); ++d) {
             LocalDateTime from = today.minusDays(d);
             try {
@@ -55,7 +56,6 @@ public class WeatherService {
                     weatherHistory.add(weather);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
                 throw new IOException("Failed to parse response");
             }
         }
@@ -78,7 +78,6 @@ public class WeatherService {
             ResponseEntity<String> response = this.restTemplate.getForEntity(builder.build().encode().toUri(), String.class);
             if (response.getStatusCode() == HttpStatus.OK) {
                 String body = response.getBody();
-                System.out.println(body);
                 if (body == null) {
                     return null;
                 }
@@ -87,7 +86,6 @@ public class WeatherService {
                 return weather;
             }
         } catch (HttpClientErrorException e) {
-            e.printStackTrace();
             return null;
         }
         return null;

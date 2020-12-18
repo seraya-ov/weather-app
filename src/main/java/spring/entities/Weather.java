@@ -17,9 +17,6 @@ public class Weather {
     @Column(name = "Time", length = 64, nullable = false)
     private String time;
 
-    @Column(name = "FeelsLike", nullable = false)
-    private Double feelsLike;
-
     @Column(name = "Temperature", nullable = false)
     private Double temp;
 
@@ -35,15 +32,15 @@ public class Weather {
     @Column(name = "Humidity", nullable = false)
     private Integer humidity;
 
+    private static final String DEFAULT_VALUE = "No data";
 
     public Weather(String time,
                    String city,
-                   Double feelsLike, Double temp, Double windKph,
+                   Double temp, Double windKph,
                    Double pressure, String windDir,
                    Integer humidity) {
         this.city = city;
         this.time = time;
-        this.feelsLike = feelsLike;
         this.temp = temp;
         this.windKph = windKph;
         this.pressure = pressure;
@@ -52,23 +49,18 @@ public class Weather {
     }
 
     public Weather() {
-        this.time = "No data";
-        this.city = "No data";
-        this.feelsLike = 0.;
+        this.time = DEFAULT_VALUE;
+        this.city = DEFAULT_VALUE;
         this.temp = 0.;
         this.windKph = 0.;
         this.pressure = 0.;
-        this.windDir = "No data";
+        this.windDir = DEFAULT_VALUE;
         this.humidity = 0;
     }
 
 
     public String getTime() {
         return time;
-    }
-
-    public Double getFeelsLike() {
-        return feelsLike;
     }
 
     public Double getTemp() {
@@ -103,10 +95,6 @@ public class Weather {
         this.time = time;
     }
 
-    public void setFeelsLike(Double feelsLike) {
-        this.feelsLike = feelsLike;
-    }
-
     public void setTemp(Double temp) {
         this.temp = temp;
     }
@@ -138,7 +126,6 @@ public class Weather {
     @Override
     public String toString() {
         return "Time: " + time +
-                "\n Feels like: " + feelsLike + "C" +
                 "\n Temperature: " + temp + "C" +
                 "\n Pressure " + pressure + "MB" +
                 "\n Humidity: " + humidity + "%" +

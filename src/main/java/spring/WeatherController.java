@@ -10,6 +10,7 @@ import spring.entities.Weather;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/weather")
@@ -18,16 +19,19 @@ public class WeatherController {
     private final WeatherService weatherService;
     private final PredictService predictService;
 
+    private static final String VIEW = "weather";
+    private static final String DEFAULT_CITY = "Moscow";
+
     public WeatherController(WeatherService weatherService, PredictService predictService) {
         this.weatherService = weatherService;
         this.predictService = predictService;
     }
 
     @GetMapping("/{city}/{days}")
-    ModelAndView getWeather(@PathVariable String city, @PathVariable int days) throws IOException {
-        ArrayList<Weather> weatherHistory = weatherService.getWeatherHistory(city, days);
+    public ModelAndView getWeather(@PathVariable String city, @PathVariable int days) throws IOException {
+        List<Weather> weatherHistory = weatherService.getWeatherHistory(city, days);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("weather");
+        modelAndView.setViewName(VIEW);
         modelAndView.addObject("weather", weatherHistory);
         modelAndView.addObject("city", city);
         modelAndView.addObject("action", "History");
@@ -35,10 +39,10 @@ public class WeatherController {
     }
 
     @GetMapping({"/{cityOrDays}", "/{cityOrDays}/"})
-    ModelAndView getWeather(@PathVariable String cityOrDays) throws IOException {
+    public ModelAndView getWeather(@PathVariable String cityOrDays) throws IOException {
         try {
             int days = Integer.parseInt(cityOrDays);
-            return getWeather("Moscow", days);
+            return getWeather(DEFAULT_CITY, days);
         }
         catch(NumberFormatException e) {
             return getWeather(cityOrDays, 1);
@@ -46,15 +50,15 @@ public class WeatherController {
     }
 
     @GetMapping({"", "/"})
-    ModelAndView getWeather() throws IOException {
-        return getWeather("Moscow", 1);
+    public ModelAndView getWeather() throws IOException {
+        return getWeather(DEFAULT_CITY, 1);
     }
 
     @GetMapping({"/{city}/predict"})
-    ModelAndView predictWeather(@PathVariable String city) throws IOException {
+    public ModelAndView predictWeather(@PathVariable String city) throws IOException {
         ArrayList<Weather> prediction = new ArrayList<>(Collections.singletonList(predictService.predictWeather(city)));
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("weather");
+        modelAndView.setViewName(VIEW);
         modelAndView.addObject("weather", prediction);
         modelAndView.addObject("city", city);
         modelAndView.addObject("action", "Forecast");
@@ -62,7 +66,7 @@ public class WeatherController {
     }
 
     @GetMapping({"/predict"})
-    ModelAndView predictWeather() throws IOException {
-        return predictWeather("Moscow");
+    public ModelAndView predictWeather() throws IOException {
+        return predictWeather(DEFAULT_CITY);
     }
 }

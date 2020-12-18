@@ -10,7 +10,6 @@
 <table>
     <tr style="outline: thin solid">
         <td style="width: 96px; outline: thin solid">Time</td>
-        <td style="width: 96px; outline: thin solid">Feels Like, C</td>
         <td style="width: 96px; outline: thin solid">Temperature, C</td>
         <td style="width: 96px; outline: thin solid">Pressure, MB</td>
         <td style="width: 96px; outline: thin solid">Humidity, %</td>
@@ -20,8 +19,6 @@
     <c:forEach items="${weather}" var="w">
         <tr style="outline: thin solid">
             <td style="width: 96px; outline: thin solid">${w.getTime()}
-            </td>
-            <td style="width: 96px; outline: thin solid">${w.getFeelsLike()}
             </td>
             <td style="width: 96px; outline: thin solid">${w.getTemp()}
             </td>

@@ -10,12 +10,11 @@ public class WeatherJsonDeserializer {
                 .getJSONArray("forecastday")
                 .get(0))).getJSONArray("hour").get(12);
         String time = dayWeatherJson.getString("time");
-        Double feelsLike = dayWeatherJson.getDouble("feelslike_c");
         Double temp = dayWeatherJson.getDouble("temp_c");
         Double windKph = dayWeatherJson.getDouble("wind_kph");
         Double pressure = dayWeatherJson.getDouble("pressure_mb");
         String windDir = dayWeatherJson.getString("wind_dir");
         Integer humidity = dayWeatherJson.getInt("humidity");
-        return new Weather(time, city, feelsLike, temp, windKph, pressure, windDir, humidity);
+        return new Weather(time, city, temp, windKph, pressure, windDir, humidity);
     }
 }

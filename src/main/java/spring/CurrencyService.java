@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,7 +35,7 @@ public class CurrencyService {
         this.requestUrl = "http://www.cbr.ru/scripts/XML_daily.asp";
     }
 
-    public ArrayList<Currency> getCurrencyHistory(int days) throws IOException {
+    public List<Currency> getCurrencyHistory(int days) throws IOException {
         LocalDate today = LocalDate.now();
         ArrayList<Currency> currencyHistory = new ArrayList<>();
         for (int d = 0; d < Math.min(days, 30); ++d) {
@@ -45,7 +46,6 @@ public class CurrencyService {
                     currencyHistory.add(currency);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new IOException("Failed to parse response");
             }
         }

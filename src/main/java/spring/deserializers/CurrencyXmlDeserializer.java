@@ -7,6 +7,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import spring.entities.Currency;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,8 +15,11 @@ import java.io.IOException;
 import java.io.StringReader;
 
 public class CurrencyXmlDeserializer {
+    private static final String CURRENCY_TAG_NAME = "Value";
+
     public Currency deserialize(String xml, String date) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         DocumentBuilder documentBuilder = factory.newDocumentBuilder();
         Document doc = documentBuilder.parse(new InputSource(new StringReader(xml)));
 
@@ -28,25 +32,24 @@ public class CurrencyXmlDeserializer {
             Element element = (Element) currencies.item(i);
             switch (element.getAttribute("ID")) {
                 case "R01010":
-                    currency.setAud(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setAud(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
                 case "R01035":
-                    currency.setGbr(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setGbr(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
                 case "R01235":
-                    currency.setUsd(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setUsd(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
                 case "R01239":
-                    currency.setEur(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setEur(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
                 case "R01350":
-                    currency.setCad(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setCad(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
                 case "R01625":
-                    currency.setSgd(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                    currency.setSgd(Double.parseDouble((element.getElementsByTagName(CURRENCY_TAG_NAME).item(0)).getTextContent().replace(",", ".")));
                     break;
-                case "R01775":
-                    currency.setChf(Double.parseDouble((element.getElementsByTagName("Value").item(0)).getTextContent().replace(",", ".")));
+                default:
                     break;
             }
 

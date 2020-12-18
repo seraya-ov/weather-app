@@ -21,22 +21,18 @@ public class Currency {
     @Column(name = "SGD", nullable = false)
     private double sgd;
 
-    @Column(name = "CHF", nullable = false)
-    private double chf;
-
     @Column(name = "AUD", nullable = false)
     private double aud;
 
     @Column(name = "USD", nullable = false)
     private double usd;
 
-    public Currency(String date, double gbr, double eur, double cad, double sgd, double chf, double aud, double usd) {
+    public Currency(String date, double gbr, double eur, double cad, double sgd, double aud, double usd) {
         this.date = date;
         this.gbr = gbr;
         this.eur = eur;
         this.cad = cad;
         this.sgd = sgd;
-        this.chf = chf;
         this.aud = aud;
         this.usd = usd;
     }
@@ -47,7 +43,6 @@ public class Currency {
         this.eur = 0;
         this.cad = 0;
         this.sgd = 0;
-        this.chf = 0;
         this.aud = 0;
         this.usd = 0;
     }
@@ -60,7 +55,6 @@ public class Currency {
                 ", eur=" + eur +
                 ", cad=" + cad +
                 ", sgd=" + sgd +
-                ", chf=" + chf +
                 ", aud=" + aud +
                 ", usd=" + usd +
                 '}';
@@ -86,10 +80,6 @@ public class Currency {
         return sgd;
     }
 
-    public double getChf() {
-        return chf;
-    }
-
     public double getAud() {
         return aud;
     }
@@ -112,10 +102,6 @@ public class Currency {
 
     public void setSgd(double sgd) {
         this.sgd = sgd;
-    }
-
-    public void setChf(double chf) {
-        this.chf = chf;
     }
 
     public void setAud(double aud) {

@@ -16,7 +16,6 @@
         <td style="width: 96px; outline: thin solid">EUR</td>
         <td style="width: 96px; outline: thin solid">CAD</td>
         <td style="width: 96px; outline: thin solid">SGD</td>
-        <td style="width: 96px; outline: thin solid">CHF</td>
     </tr>
     <c:forEach items="${currency}" var="c">
         <tr style="outline: thin solid">
@@ -33,8 +32,6 @@
             <td style="width: 96px; outline: thin solid">${c.getCad()}
             </td>
             <td style="width: 96px; outline: thin solid">${c.getSgd()}
-            </td>
-            <td style="width: 96px; outline: thin solid">${c.getChf()}
             </td>
         </tr>
     </c:forEach>
