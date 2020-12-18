@@ -16,7 +16,7 @@
         <td style="width: 96px; outline: thin solid">Wind Speed, kph</td>
         <td style="width: 96px; outline: thin solid">Wind Direction</td>
     </tr>
-    <c:forEach items="${weather}" var="w">
+    <c:forEach items="${prediction}" var="w">
         <tr style="outline: thin solid">
             <td style="width: 96px; outline: thin solid">${w.getTime()}
             </td>

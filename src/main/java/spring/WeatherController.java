@@ -32,7 +32,7 @@ public class WeatherController {
         List<Weather> weatherHistory = weatherService.getWeatherHistory(city, days);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW);
-        modelAndView.addObject("weather", weatherHistory);
+        modelAndView.addObject("prediction", weatherHistory);
         modelAndView.addObject("city", city);
         modelAndView.addObject("action", "History");
         return modelAndView;
@@ -59,7 +59,7 @@ public class WeatherController {
         ArrayList<Weather> prediction = new ArrayList<>(Collections.singletonList(predictService.predictWeather(city)));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW);
-        modelAndView.addObject("weather", prediction);
+        modelAndView.addObject("prediction", prediction);
         modelAndView.addObject("city", city);
         modelAndView.addObject("action", "Forecast");
         return modelAndView;

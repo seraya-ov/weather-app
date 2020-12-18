@@ -41,11 +41,7 @@ public class WeatherService {
 
 
     public List<Weather> getWeatherHistory(String city, int days) throws IOException {
-        LocalDateTime today = LocalDateTime.now();
-
-        if (today.getHour() < 13) {
-            today = today.minusDays(1);
-        }
+        LocalDateTime today = LocalDateTime.now().minusDays(1);
 
         List<Weather> weatherHistory = new ArrayList<>();
         for (int d = 0; d < Math.min(days, 8); ++d) {
