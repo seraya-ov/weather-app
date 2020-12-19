@@ -12,7 +12,6 @@ import spring.deserializers.CurrencyXmlDeserializer;
 import spring.entities.Currency;
 import spring.repositories.CurrencyRepository;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -52,7 +51,7 @@ public class CurrencyService {
         return currencyHistory;
     }
 
-    public Currency getCurrency(LocalDate from) throws ParserConfigurationException, IOException, SAXException {
+    public Currency getCurrency(LocalDate from) throws IOException, SAXException {
         String date = from.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Optional<Currency> optionalCurrency = repository.findById(date);
 

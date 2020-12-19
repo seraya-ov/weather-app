@@ -1,7 +1,7 @@
 package spring.deserializers;
 
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import spring.entities.Weather;
 
 import static org.junit.jupiter.api.Assertions.*;
