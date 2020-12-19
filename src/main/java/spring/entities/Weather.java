@@ -148,9 +148,4 @@ public class Weather {
         if (!windDir.equals(weather.windDir)) return false;
         return humidity.equals(weather.humidity);
     }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }

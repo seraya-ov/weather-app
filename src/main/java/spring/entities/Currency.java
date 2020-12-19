@@ -76,11 +76,6 @@ public class Currency {
         return date.equals(currency.date);
     }
 
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
     public String getDate() {
         return date;
     }

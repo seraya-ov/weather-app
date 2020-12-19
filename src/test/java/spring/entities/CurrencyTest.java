@@ -11,26 +11,31 @@ public class CurrencyTest {
     @Test
     public void getDate() {
         assertEquals(testCurrency.getDate(), "TestDate");
+        assertEquals(new Currency().getDate(), "No data");
     }
 
     @Test
     public void getGbr() {
         assertEquals(testCurrency.getGbr(), 1.0);
+        assertEquals(new Currency().getGbr(), 0.0);
     }
 
     @Test
     public void getEur() {
         assertEquals(testCurrency.getEur(), 2.0);
+        assertEquals(new Currency().getEur(), 0.0);
     }
 
     @Test
     public void getCad() {
         assertEquals(testCurrency.getCad(), 3.0);
+        assertEquals(new Currency().getCad(), 0.0);
     }
 
     @Test
     public void getSgd() {
         assertEquals(testCurrency.getSgd(), 4.0);
+        assertEquals(new Currency().getSgd(), 0.0);
     }
 
     @Test
@@ -47,6 +52,7 @@ public class CurrencyTest {
     public void setGbr() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getGbr(), 100.0);
         currency.setGbr(1000.0);
         assertEquals(currency.getGbr(), 1000.0);
     }
@@ -55,6 +61,7 @@ public class CurrencyTest {
     public void setEur() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getEur(), 100.0);
         currency.setEur(1000.0);
         assertEquals(currency.getEur(), 1000.0);
     }
@@ -63,6 +70,7 @@ public class CurrencyTest {
     public void setCad() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getEur(), 100.0);
         currency.setCad(1000.0);
         assertEquals(currency.getCad(), 1000.0);
     }
@@ -71,6 +79,7 @@ public class CurrencyTest {
     public void setSgd() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getSgd(), 100.0);
         currency.setSgd(1000.0);
         assertEquals(currency.getSgd(), 1000.0);
     }
@@ -79,6 +88,7 @@ public class CurrencyTest {
     public void setAud() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getAud(), 100.0);
         currency.setAud(1000.0);
         assertEquals(currency.getAud(), 1000.0);
     }
@@ -87,6 +97,7 @@ public class CurrencyTest {
     public void setUsd() {
         Currency currency = new Currency("TestDate",
                 100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertEquals(currency.getSgd(), 100.0);
         currency.setUsd(1000.0);
         assertEquals(currency.getUsd(), 1000.0);
     }
