@@ -97,4 +97,24 @@ class WeatherTest {
         weather.setCity("OtherCity");
         assertEquals(weather.getCity(), "OtherCity");
     }
+
+    @Test
+    public void equalsTest() {
+        Weather weather = new Weather(testTime, testCity, testTemp, testWindKph, testPressure, testWindDirection, testHumidity);
+        Weather other = new Weather("OtherTime", testCity, testTemp, testWindKph, testPressure, testWindDirection, testHumidity);
+        assertNotEquals(weather, other);
+        assertEquals(weather, weather);
+
+        other.setTime(testTime);
+        other.setTemp(-1000.0);
+        assertNotEquals(weather, other);
+    }
+
+    @Test
+    public void hashTest() {
+        Weather weather = new Weather(testTime, testCity, testTemp, testWindKph, testPressure, testWindDirection, testHumidity);
+        Weather other = new Weather(testTime, testCity, testTemp, testWindKph, testPressure, testWindDirection, testHumidity);
+
+        assertEquals(weather.hashCode(), other.hashCode());
+    }
 }

@@ -151,8 +151,7 @@ public class Weather {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + city.hashCode();
+        int result = city.hashCode();
         result = 31 * result + time.hashCode();
         result = 31 * result + temp.hashCode();
         result = 31 * result + windKph.hashCode();

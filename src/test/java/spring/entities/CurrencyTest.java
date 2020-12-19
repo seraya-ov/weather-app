@@ -109,4 +109,28 @@ public class CurrencyTest {
         currency.setDate("OtherTestDate");
         assertEquals(currency.getDate(), "OtherTestDate");
     }
+
+    @Test
+    public void equalsTest() {
+        Currency currency = new Currency("TestDate",
+                100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        Currency other = new Currency("DifferentDate",
+                100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        assertNotEquals(currency, other);
+        assertEquals(currency, currency);
+
+        other.setDate("TestDate");
+        other.setGbr(1);
+        assertNotEquals(currency, other);
+    }
+
+    @Test
+    public void hashTest() {
+        Currency currency = new Currency("TestDate",
+                100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+        Currency other = new Currency("TestDate",
+                100.0, 100.0, 100.0, 100.0, 100.0, 100.0);
+
+        assertEquals(currency.hashCode(), other.hashCode());
+    }
 }
