@@ -132,4 +132,25 @@ public class Weather {
                 "\n Wind speed:" + windKph + "kph" +
                 "\n Wind direction: '" + windDir;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Weather weather = (Weather) o;
+
+        if (!city.equals(weather.city)) return false;
+        if (!time.equals(weather.time)) return false;
+        if (!temp.equals(weather.temp)) return false;
+        if (!windKph.equals(weather.windKph)) return false;
+        if (!pressure.equals(weather.pressure)) return false;
+        if (!windDir.equals(weather.windDir)) return false;
+        return humidity.equals(weather.humidity);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

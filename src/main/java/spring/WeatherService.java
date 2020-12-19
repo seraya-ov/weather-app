@@ -77,7 +77,7 @@ public class WeatherService {
                 if (body == null) {
                     return null;
                 }
-                Weather weather = deserializer.deserialize(new JSONObject(body), city);
+                Weather weather = deserializer.deserialize(new JSONObject(body));
                 repository.save(weather);
                 return weather;
             }

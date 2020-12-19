@@ -60,6 +60,27 @@ public class Currency {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Currency currency = (Currency) o;
+
+        if (Double.compare(currency.gbr, gbr) != 0) return false;
+        if (Double.compare(currency.eur, eur) != 0) return false;
+        if (Double.compare(currency.cad, cad) != 0) return false;
+        if (Double.compare(currency.sgd, sgd) != 0) return false;
+        if (Double.compare(currency.aud, aud) != 0) return false;
+        if (Double.compare(currency.usd, usd) != 0) return false;
+        return date.equals(currency.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
     public String getDate() {
         return date;
     }

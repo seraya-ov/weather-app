@@ -67,7 +67,7 @@ public class CurrencyService {
             return null;
         }
 
-        Currency currency = deserializer.deserialize(response.getBody(), date);
+        Currency currency = deserializer.deserialize(response.getBody());
         repository.save(currency);
 
         return currency;

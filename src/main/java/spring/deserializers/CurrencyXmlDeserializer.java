@@ -16,17 +16,21 @@ import java.io.StringReader;
 
 public class CurrencyXmlDeserializer {
     private static final String CURRENCY_TAG_NAME = "Value";
+    private final DocumentBuilder documentBuilder;
 
-    public Currency deserialize(String xml, String date) throws ParserConfigurationException, IOException, SAXException {
+    public CurrencyXmlDeserializer() throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-        DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+        documentBuilder = factory.newDocumentBuilder();
+    }
+
+    public Currency deserialize(String xml) throws IOException, SAXException {
         Document doc = documentBuilder.parse(new InputSource(new StringReader(xml)));
 
         Currency currency = new Currency();
-        currency.setDate(date);
 
         NodeList currencies = ((Element) doc.getElementsByTagName("ValCurs").item(0)).getElementsByTagName("Valute");
+        currency.setDate(((Element) doc.getElementsByTagName("ValCurs").item(0)).getAttribute("Date"));
 
         for (int i = 0; i < currencies.getLength(); ++i) {
             Element element = (Element) currencies.item(i);

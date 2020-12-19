@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import spring.deserializers.CurrencyXmlDeserializer;
 import spring.deserializers.WeatherJsonDeserializer;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 @Configuration
 public class AppConfig {
     @Bean
@@ -14,7 +16,7 @@ public class AppConfig {
     }
 
     @Bean
-    CurrencyXmlDeserializer currencyXmlDeserializer() {
+    CurrencyXmlDeserializer currencyXmlDeserializer() throws ParserConfigurationException {
         return new CurrencyXmlDeserializer();
     }
 
