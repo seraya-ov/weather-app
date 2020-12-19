@@ -148,4 +148,17 @@ public class Weather {
         if (!windDir.equals(weather.windDir)) return false;
         return humidity.equals(weather.humidity);
     }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + time.hashCode();
+        result = 31 * result + temp.hashCode();
+        result = 31 * result + windKph.hashCode();
+        result = 31 * result + pressure.hashCode();
+        result = 31 * result + windDir.hashCode();
+        result = 31 * result + humidity.hashCode();
+        return result;
+    }
 }
