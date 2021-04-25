@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+  eureka:
+    build: ./eureka
+    restart: always
+    image: eureka:latest
+    ports:
+      - 9003:9003
+    # volumes:
+    #     - ./temp-data-volume:/usr/src/app/tmp
+    # environment:
+    #   TMP_DIR: /usr/src/app/tmp
+
+  currency:
+    build: ./currency
+    restart: always
+    image: currency:latest
+    ports:
+      - 9001:9001
+    # volumes:
+    #     - ./temp-data-volume:/usr/src/app/tmp
+
+  weather:
+    build: ./weather
+    restart: always
+    image: weather:latest
+    ports:
+      - 9002:9002
+    # volumes:
+    #     - ./temp-data-volume:/usr/src/app/tmp
+
+  predict:
+    build: ./predict
+    restart: always
+    image: predict:latest
+    ports:
+      - 9004:9004
+    # volumes:
+    #     - ./temp-data-volume:/usr/src/app/tmp
+
+# volumes:
+#   temp-data-volume:
