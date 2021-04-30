@@ -27,8 +27,8 @@ services:
     image: weather:latest
     ports:
       - 9002:9002
-    # volumes:
-    #     - ./temp-data-volume:/usr/src/app/tmp
+#     volumes:
+#         - ./temp-data-volume:/usr/src/app/tmp
 
   predict:
     build: ./predict

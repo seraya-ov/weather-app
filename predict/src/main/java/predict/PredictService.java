@@ -3,7 +3,7 @@ package predict;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,16 +16,17 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class PredictService {
 
+    private final Environment env;
     private final RestTemplate restTemplate;
 
-
     @Autowired
-    public PredictService() {
-        this.restTemplate = new RestTemplateBuilder().build();
+    public PredictService(Environment env, RestTemplate restTemplate) {
+        this.env = env;
+        this.restTemplate = restTemplate;
     }
 
     public Weather predictWeather(String city) {
-        String weatherUrl = "http://weather:9002/weather_xml";
+        String weatherUrl = this.env.getProperty("predict.weatherUrl"); //"http://weather:9002/weather_xml";
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(weatherUrl).queryParam("city", city).queryParam("days", 8);
         ResponseEntity<Weather[]> response = this.restTemplate.getForEntity(builder.build().encode().toUri(), Weather[].class);
 
@@ -58,7 +59,7 @@ public class PredictService {
     }
 
     public Currency predictCurrency() {
-        String currencyUrl = "http://currency:9001/currency_xml";
+        String currencyUrl = this.env.getProperty("predict.currencyUrl"); //"http://currency:9001/currency_xml";
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(currencyUrl).queryParam("days", 8);
         ResponseEntity<Currency[]> response = this.restTemplate.getForEntity(builder.build().encode().toUri(), Currency[].class);
 

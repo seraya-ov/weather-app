@@ -53,15 +53,13 @@ public class Currency {
 
     @Override
     public String toString() {
-        return "spring.Currency{" +
-                "date='" + date + '\'' +
-                ", gbr=" + gbr +
-                ", eur=" + eur +
-                ", cad=" + cad +
-                ", sgd=" + sgd +
-                ", aud=" + aud +
-                ", usd=" + usd +
-                '}';
+        return "Date: " + date +
+                "\n GBR: " + gbr +
+                "\n EUR: " + eur +
+                "\n CAD: " + cad +
+                "\n SGD: " + sgd +
+                "\n AUD: " + aud +
+                "\n USD: " + usd;
     }
 
     @Override

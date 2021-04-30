@@ -22,9 +22,9 @@ public class CurrencyService {
     private final CurrencyRepository repository;
     private final CurrencyXmlDeserializer deserializer;
 
-    @Autowired
-    public CurrencyService(CurrencyRepository repository, CurrencyXmlDeserializer deserializer) {
-        this.restTemplate = new RestTemplateBuilder().build();
+
+    public CurrencyService(CurrencyRepository repository, CurrencyXmlDeserializer deserializer, RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
         this.repository = repository;
         this.deserializer = deserializer;
         this.requestUrl = "http://www.cbr.ru/scripts/XML_daily.asp";

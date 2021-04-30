@@ -24,9 +24,6 @@ public class CurrencyControllerTest {
     void getCurrency() {
         CurrencyController controller = new CurrencyController(currencyService);
         try {
-//            ModelAndView currency = controller.getCurrency( Math.abs(new Random().nextInt(100)) + 1);
-//            ModelAndView noDaysCurrency = controller.getCurrency();
-//            ModelAndView oneDayCurrency = controller.getCurrency(1);
             List<Currency> currency = controller.getCurrency( Math.abs(new Random().nextInt(100)) + 1);
             List<Currency> noDaysCurrency = controller.getCurrency();
             List<Currency> oneDayCurrency = controller.getCurrency(1);

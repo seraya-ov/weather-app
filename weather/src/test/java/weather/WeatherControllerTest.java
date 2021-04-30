@@ -24,11 +24,6 @@ public class WeatherControllerTest {
     void getWeather() {
         WeatherController controller = new WeatherController(weatherService);
         try {
-//            ModelAndView daysWeather = controller.getWeather(Integer.toString(Math.abs(new Random().nextInt(100)) + 1));
-//            ModelAndView cityWeather = controller.getWeather("London");
-//            ModelAndView noParamsWeather = controller.getWeather();
-//            ModelAndView oneDayWeather = controller.getWeather(Integer.toString(1));
-
             List<Weather> daysWeather = controller.getWeather(Integer.toString(Math.abs(new Random().nextInt(100)) + 1));
             List<Weather> cityWeather = controller.getWeather("London");
             List<Weather> noParamsWeather = controller.getWeather();

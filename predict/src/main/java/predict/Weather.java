@@ -112,7 +112,7 @@ public class Weather {
                 "\n Pressure " + pressure + "MB" +
                 "\n Humidity: " + humidity + "%" +
                 "\n Wind speed:" + windKph + "kph" +
-                "\n Wind direction: '" + windDir;
+                "\n Wind direction: " + windDir;
     }
 
     @Override

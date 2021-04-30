@@ -3,7 +3,6 @@ package predict;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,8 +21,6 @@ public class PredictControllerTest {
     void predictWeather() {
         PredictController controller = new PredictController(predictService);
         try {
-//            ModelAndView noParamsPrediction = controller.predictWeather();
-//            ModelAndView prediction = controller.predictWeather("London");
             String noParamsPrediction = controller.predictWeather();
             String prediction = controller.predictWeather("London");
             assertNotNull(noParamsPrediction);
@@ -38,7 +35,6 @@ public class PredictControllerTest {
     void predictCurrency() {
         PredictController controller = new PredictController(predictService);
         try {
-//            ModelAndView prediction = controller.predictCurrency();
             String prediction = controller.predictCurrency();
             assertNotNull(prediction);
         } catch (Exception e) {

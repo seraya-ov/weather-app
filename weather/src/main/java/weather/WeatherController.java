@@ -11,8 +11,6 @@ import java.util.List;
 public class WeatherController {
 
     private final WeatherService weatherService;
-
-//    private static final String VIEW = "weather";
     private static final String DEFAULT_CITY = "Moscow";
 
     public WeatherController(WeatherService weatherService) {
@@ -21,11 +19,6 @@ public class WeatherController {
 
     @GetMapping("/{city}/{days}")
     public List<Weather> getWeather(@PathVariable String city, @PathVariable int days) throws IOException {
-        //        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName(VIEW);
-//        modelAndView.addObject("prediction", weatherHistory);
-//        modelAndView.addObject("city", city);
-//        modelAndView.addObject("action", "History");
         return weatherService.getWeatherHistory(city, days);
     }
 

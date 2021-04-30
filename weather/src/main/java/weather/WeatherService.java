@@ -26,9 +26,9 @@ public class WeatherService {
     private final WeatherRepository repository;
     private final WeatherJsonDeserializer deserializer;
 
-    @Autowired
-    public WeatherService(WeatherRepository repository, WeatherJsonDeserializer deserializer) {
-        this.restTemplate = new RestTemplateBuilder().build();
+
+    public WeatherService(WeatherRepository repository, WeatherJsonDeserializer deserializer, RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
         this.repository = repository;
         this.deserializer = deserializer;
         this.key = "44d5ab0f808549ec95294630200612";

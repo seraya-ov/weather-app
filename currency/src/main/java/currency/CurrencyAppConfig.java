@@ -2,6 +2,7 @@ package currency;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -11,4 +12,7 @@ public class CurrencyAppConfig {
     CurrencyXmlDeserializer currencyXmlDeserializer() throws ParserConfigurationException {
         return new CurrencyXmlDeserializer();
     }
+
+    @Bean
+    RestTemplate restTemplate() { return new RestTemplate();}
 }

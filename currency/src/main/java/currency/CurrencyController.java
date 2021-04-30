@@ -10,7 +10,6 @@ import java.util.List;
 public class CurrencyController {
 
     private final CurrencyService currencyService;
-//    private static final String VIEW = "currency";
 
     public CurrencyController(CurrencyService currencyService) {
         this.currencyService = currencyService;
@@ -18,9 +17,6 @@ public class CurrencyController {
 
     @GetMapping("/{days}")
     public List<Currency> getCurrency(@PathVariable int days) throws IOException {
-        //        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName(VIEW);
-//        modelAndView.addObject(VIEW, currencyHistory);
         return currencyService.getCurrencyHistory(days);
     }
 
