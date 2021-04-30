@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  eureka:
+    build: ./eureka
+    restart: always
+    image: eureka:latest
+    ports:
+      - 9003:9003
+
+  currency:
+    build: ./currency
+    restart: always
+    image: currency:latest
+    ports:
+      - 9001:9001
+
+  weather:
+    build: ./weather
+    restart: always
+    image: weather:latest
+    ports:
+      - 9002:9002
+
+  predict:
+    build: ./predict
+    restart: always
+    image: predict:latest
+    ports:
+      - 9004:9004
