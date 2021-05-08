@@ -1,6 +1,14 @@
 version: '3.1'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+
   eureka:
     build: ./eureka
     restart: always
@@ -14,6 +22,8 @@ services:
     image: currency:latest
     ports:
       - 9001:9001
+    depends_on:
+      - db
 
   weather:
     build: ./weather
@@ -21,6 +31,8 @@ services:
     image: weather:latest
     ports:
       - 9002:9002
+    depends_on:
+      - db
 
   predict:
     build: ./predict
