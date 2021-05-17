@@ -1,0 +1,19 @@
+- name: Run db
+  vars:
+    ansible_ssh_user: edumfti
+  hosts: centos
+  tasks:
+    - name: сreate directory
+      file:
+        path: /edu/serayaov/
+        state: directory
+    - name: upload docker-compose
+      copy:
+        src=db.yml
+        dest=/edu/serayaov/db.yml
+    - name: start db
+      docker_compose:
+        project_src: /edu/serayaov/
+        files:
+          - db.yml
+        state: present

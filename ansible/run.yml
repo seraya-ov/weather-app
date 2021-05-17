@@ -1,0 +1,47 @@
+- name: Run services
+  vars:
+    ansible_ssh_user: mftiedu
+  hosts: ubuntu
+  tasks:
+    - name: directory
+      file:
+        path: /edu/serayaov/
+        state: directory
+    - name: upload images
+      copy:
+        src=tmp
+        dest=/edu/serayaov/
+    - name: load eureka
+      docker_image:
+        load_path: "/edu/{{ docker_image_prefix }}/tmp/{{ services.eureka }}.tar"
+        name: "{{ docker_image_prefix }}/{{ services.eureka }}"
+        state: present
+        source: load
+    - name: load currency
+      docker_image:
+        load_path: "/edu/{{ docker_image_prefix }}/tmp/{{ services.currency }}.tar"
+        name: "{{ docker_image_prefix }}/{{ services.currency }}"
+        state: present
+        source: load
+    - name: load weather
+      docker_image:
+        load_path: "/edu/{{ docker_image_prefix }}/tmp/{{ services.weather }}.tar"
+        name: "{{ docker_image_prefix }}/{{ services.weather }}"
+        state: present
+        source: load
+    - name: load predict
+      docker_image:
+        load_path: "/edu/{{ docker_image_prefix }}/tmp/{{ services.predict }}.tar"
+        name: "{{ docker_image_prefix }}/{{ services.predict }}"
+        state: present
+        source: load
+    - name: upload docker-compose
+      copy:
+        src=docker-compose.yml
+        dest=/edu/serayaov/docker-compose.yml
+    - name: start services
+      docker_compose:
+        project_src: /edu/serayaov/
+        files:
+          - docker-compose.yml
+        state: present

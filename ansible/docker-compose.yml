@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+  eureka:
+    image: serayaov/eureka:latest
+    ports:
+      - 9063:9063
+
+  currency:
+    image: serayaov/currency:latest
+    ports:
+      - 9061:9061
+    depends_on:
+      - eureka
+    environment:
+      - JAVA_OPTS=
+        -DB_SERVER=jdbc:postgresql://{{ db }}:5430/postgres
+
+  weather:
+    image: serayaov/weather:latest
+    ports:
+      - 9062:9062
+    depends_on:
+      - eureka
+    environment:
+      - JAVA_OPTS=
+        -DB_SERVER=jdbc:postgresql://{{ db }}:5430/postgres
+
+  predict:
+    image: serayaov/predict:latest
+    ports:
+      - 9064:9064
+    depends_on:
+      - eureka
+      - currency
+      - weather

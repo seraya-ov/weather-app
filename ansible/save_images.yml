@@ -1,0 +1,35 @@
+---
+- name: Save images
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+    ansible_connection: local
+  hosts: local
+  gather_facts: no
+  tasks:
+    - name: archive container image as a tarball [weather]
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.weather }}"
+        archive_path: "./tmp/{{ services.weather }}.tar"
+        source: local
+        state: present
+
+    - name: archive container image as a tarball [currency]
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.currency }}"
+        archive_path: "./tmp/{{ services.currency }}.tar"
+        source: local
+        state: present
+
+    - name: archive container image as a tarball [predict]
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.predict }}"
+        archive_path: "./tmp/{{ services.predict }}.tar"
+        source: local
+        state: present
+
+    - name: archive container image as a tarball [eureka]
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.eureka }}"
+        archive_path: "./tmp/{{ services.eureka }}.tar"
+        source: local
+        state: present
