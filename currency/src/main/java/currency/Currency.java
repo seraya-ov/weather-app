@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "CURRENCY")
+@Table(name = "currency")
 public class Currency {
     @Id
     @Column(name = "Date", length = 64, nullable = false)

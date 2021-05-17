@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Weather {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "Id", nullable = false)
     private Long id;
 
