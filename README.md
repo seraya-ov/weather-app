@@ -6,4 +6,4 @@ An app which uses APIs to display information about the weather from given date 
 
 ## How to run:
 
-> mvn clean package docker compose up --build
+> mvn clean package docker-compose up --build
