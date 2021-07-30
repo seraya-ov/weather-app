@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predict
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: predict
+  template:
+    metadata:
+      name: predict
+      labels:
+        app: predict
+    spec:
+      containers:
+        - image: predict
+          name: predict
+          ports:
+            - containerPort: 9004
+          imagePullPolicy: IfNotPresent

@@ -1,0 +1,39 @@
+---
+- name: build docker images locally
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+    ansible_connection: local
+  gather_facts: no
+  hosts: local
+  tasks:
+    - name: build weather image
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.weather }}:latest"
+        build:
+          path: './../weather'
+        source: build
+        state: present
+
+    - name: build currency image
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.currency }}:latest"
+        build:
+          path: './../currency'
+        source: build
+        state: present
+
+    - name: build predict image
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.predict }}:latest"
+        build:
+          path: './../predict'
+        source: build
+        state: present
+
+    - name: build eureka image
+      docker_image:
+        name: "{{ docker_image_prefix }}/{{ services.eureka }}:latest"
+        build:
+          path: './../eureka'
+        source: build
+        state: present

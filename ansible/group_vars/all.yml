@@ -1,0 +1,11 @@
+---
+deploy_path: /edu/serayaov
+docker_image_prefix: serayaov
+db: 194.87.111.112
+
+services:
+  db: "db"
+  eureka: "eureka"
+  weather: "weather"
+  currency: "currency"
+  predict: "predict"
