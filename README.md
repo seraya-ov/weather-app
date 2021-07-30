@@ -1,4 +1,4 @@
-# weather-app
+# Weather&Currency app
 
 A project implemented during the course on design and development of information systems.
 
